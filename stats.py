@@ -26,7 +26,7 @@ def startStatus():
       if newPrice > temphighest:temphighest = newPrice
       if newPrice < tempLowewstPrice:tempLowewstPrice = newPrice
       if value["discount"] > tempMaxDiscount:tempMaxDiscount = value["discount"]
-    else: freeGame.append(mainDict[key])
+    else: freeGame.append(value["name"])
 
   
   countMaxDiscount,countHighestPrice,countLowestPrice = 0,0,0
