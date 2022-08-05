@@ -28,4 +28,4 @@ In credentials:
 
 **** NOW RUN program.py ****
 
-* stats.py will auto generate saved.txt and send it to the reciever mail *
+* stats.py will auto generate saved.txt and send it to the reciever mail
