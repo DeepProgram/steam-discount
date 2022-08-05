@@ -15,6 +15,7 @@ The modules that ae used here are:
 
 
 **** BEFORE RUN THE PROGRAM EDIT credentials.txt ****
+
 In credentials:
   1. search_amount - The amount of product you want to check from top seller section (1000 take 3-4 minutes)
   2. sendmail - This 24 hour time that is used to send the stats from the scraped data to a email
