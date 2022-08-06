@@ -23,4 +23,5 @@ class transactions(base):
     self.discount = discount
     self.date = date
 
+
 base.metadata.create_all(engine)

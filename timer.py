@@ -1,19 +1,26 @@
-import schedule
 import time
-import scrap
-import sendmail
-import json
+from datetime import datetime
 
+class Timer():
+  def __init__(self,credentials,startDailyTask,startScrapingTask):
+    self.credentials = credentials
+    self.startDailyTask = startDailyTask
+    self.startScrapingTask = startScrapingTask
 
-def startTimer():
-  credentials = json.loads(open("credentials.txt","r").read())
-  schedule.every().day.at(credentials["sendmail"]).do(sendmail.sendMail)
-  if credentials["gatherdata"][0] == "minutes":
-    schedule.every(credentials["gatherdata"][1]).minutes.do(scrap.startScraping)
-  elif credentials["gatherdata"][0] == "hours":
-    schedule.every(credentials["gatherdata"][1]).hours.do(scrap.startScraping)
+  def startTimer(self,scrapObj,statsObj,sendMailObj):
+    sendMailHour,sendMailMinute = map(int,self.credentials["sendmail"].split(":"))
+    scrapMinute = 0
+    if self.credentials["gatherdata"][0] == "minutes":
+      scrapMinute = self.credentials["gatherdata"][1]
+    else: scrapMinute = int(self.credentials["gatherdata"][1]*60)
+    statsDict = None
+    count = 0
+    while 1:
+      if datetime.now().hour == sendMailHour and datetime.now().minute == sendMailMinute:
+        self.startDailyTask(sendMailObj,statsDict)
+      if count == scrapMinute:
+        count = 0
+        statsDict = self.startScrapingTask(scrapObj,statsObj)  
+      count += 1 
+      time.sleep(60)
 
-
-  while 1:
-    schedule.run_pending()
-    time.sleep(1)
