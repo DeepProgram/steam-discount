@@ -6,11 +6,10 @@ This is a python backend program to scrap steam discount game and save it in a d
 
 ## Screenshots
 
-![App Screenshot](https://i.postimg.cc/TYYrHKNw/Screenshot-20220805-220601.png)
+![App Screenshot](https://i.postimg.cc/63d2Yp7M/Screenshot-20220806-211735.png)
 
-![App Screenshot](https://i.postimg.cc/W4b5HmnR/Screenshot-20220805-221434.png)
+![App Screenshot](https://i.postimg.cc/RhSFdQx0/Screenshot-20220806-211823.png)
 
-![App Screenshot](https://i.postimg.cc/XJx40gMw/Screenshot-20220805-221702.png)
 ## Setup
 🔴 First edit credentials.txt
 ```bash
