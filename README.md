@@ -30,7 +30,7 @@ To deploy this project run
 ```bash
   pyhon3 program.py
 ```
-
+- First run will be started after the specified gatherdata time that is in credentials.txt
 
 ## Features
 
