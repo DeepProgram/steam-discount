@@ -9,7 +9,6 @@ This is a python backend program to scrap steam discount game and save it in a d
 ![App Screenshot](https://i.postimg.cc/63d2Yp7M/Screenshot-20220806-211735.png)
 
 ![App Screenshot](https://i.postimg.cc/RhSFdQx0/Screenshot-20220806-211823.png)
-
 ## Setup
 🔴 First edit credentials.txt
 ```bash
@@ -31,6 +30,12 @@ To deploy this project run
 ```bash
   pyhon3 program.py
 ```
+
+
+## Features
+
+- API has been created (api.py)
+- API test can aslo be done (sendapirequest.py)
 
 
 ## Authors
