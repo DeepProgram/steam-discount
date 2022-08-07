@@ -6,25 +6,28 @@ from sqlalchemy.orm import sessionmaker
 import db
 import json
 
-def startDailyTask(sendMailObj,statsDict):
-  sendMailObj.setCredentials(statsDict)
-  print("\n\n\t\t\t\t**** SENDING MAIL ****\n")
-  sendMailObj.sendMail()
-  print("\n\n\t\t\t\t**** MAIL SENT.. WAITING FOR NEXT RUN..... ****\n")
 
-def startScrapingTask(scrapObj,statsObj):
-  print("\n\n\t\t\t\t**** SCRAPING DATA ****\n")
-  scrapObj.scrapData()
-  print("\n\n\t\t\t\t**** CREATING STATS ****\n")
-  return [statsObj.getOverallStats(),statsObj.getTodaysStats(),statsObj.getMonthlyStats()]
+def start_daily_task(send_mail_obj: SendMail, stats_dict: list):
+    send_mail_obj.set_credentials(stats_dict)
+    print("\n\n\t\t\t\t**** SENDING MAIL ****\n")
+    send_mail_obj.send_mail()
+    print("\n\n\t\t\t\t**** MAIL SENT.. WAITING FOR NEXT RUN..... ****\n")
+
+
+def start_scraping_task(scrap_obj: ScrapData, stats_obj: Stats) -> list:
+    print("\n\n\t\t\t\t**** SCRAPING DATA ****\n")
+    scrap_obj.scrap_data()
+    print("\n\n\t\t\t\t**** CREATING STATS ****\n")
+    return [stats_obj.get_overall_stats(), stats_obj.get_today_stats(), stats_obj.get_monthly_stats()]
 
 
 if __name__ == "__main__":
-  Session = sessionmaker(bind=db.engine)
-  session = Session()
-  credentials = json.loads(open("credentials.txt","r").read())
-  scrapObj = ScrapData(session, db, credentials)
-  statsObj = Stats(session, db)
-  sendMailObj = SendMail(credentials)
-  timerObj = Timer(credentials, startDailyTask, startScrapingTask)
-  timerObj.startTimer(scrapObj,statsObj,sendMailObj)
+    Session = sessionmaker(bind=db.engine)
+    session = Session()
+    credentials = json.loads(open("credentials.txt", "r").read())
+    scrapObj = ScrapData(session, db, credentials)
+    statsObj = Stats(session, db)
+    sendMailObj = SendMail(credentials)
+    timerObj = Timer(credentials, start_daily_task, start_scraping_task)
+    timerObj.start_timer(scrapObj, statsObj, sendMailObj)
+ 
